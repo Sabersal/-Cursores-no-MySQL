@@ -1,0 +1,44 @@
+Tabela livro e Autor:
+
+DECLARE cursor_autores CURSOR FOR
+SELECT autor_id, livro_id FROM Livro_Autor;
+OPEN cursor_autores;
+fetch_loop_autores: LOOP
+    FETCH cursor_autores INTO v_autor_id, v_livro_id;
+    IF done THEN
+        LEAVE fetch_loop_autores;
+    END IF;
+END LOOP fetch_loop_autores;
+CLOSE cursor_autores;
+
+
+Tabela genero e livro :
+
+
+DECLARE cursor_generos CURSOR FOR
+SELECT genero_id, livro_id FROM Livro;
+OPEN cursor_generos;
+fetch_loop_generos: LOOP
+    FETCH cursor_generos INTO v_genero_id, v_livro_id;
+    IF done THEN
+        LEAVE fetch_loop_generos;
+    END IF;
+END LOOP fetch_loop_generos;
+CLOSE cursor_generos;
+
+Atualizacao :
+
+
+DECLARE cursor_atualizacao CURSOR FOR
+SELECT livro_id FROM Livro WHERE autor_id = 1; -- Supondo que 1 é o ID do autor desejado
+OPEN cursor_atualizacao;
+fetch_loop_atualizacao: LOOP
+    FETCH cursor_atualizacao INTO v_livro_id;
+    IF done THEN
+        LEAVE fetch_loop_atualizacao;
+    END IF;
+END LOOP fetch_loop_atualizacao;
+CLOSE cursor_atualizacao;
+
+
+
